@@ -7,7 +7,7 @@
 import native from '../native';
 
 var VBArray = this.VBArray;
-var MessageChannel = this.Promise;
+var MessageChannel = this.MessageChannel;
 
 export default {
   /**

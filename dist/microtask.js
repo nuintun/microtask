@@ -101,7 +101,7 @@
    */
 
   var VBArray = window.VBArray;
-  var MessageChannel = window.Promise;
+  var MessageChannel = window.MessageChannel;
 
   var channel = {
     /**
