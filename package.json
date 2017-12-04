@@ -1,0 +1,19 @@
+{
+  "name": "microtask",
+  "version": "0.0.1",
+  "description": "A pure JavaScript cross browser microtask.",
+  "author": {
+    "name": "nuintun",
+    "email": "nuintun@qq.com"
+  },
+  "homepage": "https://nuintun.github.io/microtask",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nuintun/microtask.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^0.52.0",
+    "uglify-es": "^3.2.1"
+  }
+}
