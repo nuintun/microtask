@@ -1,3 +1,12 @@
+/**
+* @module microtask
+* @author nuintun
+* @license MIT
+* @version 0.0.1
+* @description A pure JavaScript cross browser microtask.
+* @see https://nuintun.github.io/microtask
+*/
+
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define('microtask', factory) :
@@ -7,7 +16,7 @@
   /**
    * @module native
    * @license MIT
-   * @version 2017/12/04
+   * @version 2017/12/05
    */
 
   // Used to match `RegExp`
@@ -33,7 +42,7 @@
   /**
    * @module promise
    * @license MIT
-   * @version 2017/12/04
+   * @version 2017/12/05
    */
 
   var Promise = window.Promise;
@@ -61,7 +70,7 @@
   /**
    * @module mutation
    * @license MIT
-   * @version 2017/12/04
+   * @version 2017/12/05
    */
 
   var Mutation = window.MutationObserver || window.WebKitMutationObserver;
@@ -97,7 +106,7 @@
   /**
    * @module channel
    * @license MIT
-   * @version 2017/12/04
+   * @version 2017/12/05
    */
 
   var VBArray = window.VBArray;
@@ -129,12 +138,55 @@
   };
 
   /**
-   * @module image
+   * @module script
    * @license MIT
-   * @version 2017/12/04
+   * @version 2017/12/05
    */
 
-  var image = {
+  var fragment = document.createDocumentFragment();
+
+  var script = {
+    /**
+     * @method support
+     * @returns {boolean}
+     */
+    support: function() {
+      return 'onreadystatechange' in document.createElement('script');
+    },
+    /**
+     * @method install
+     * @param {Function} handler
+     * @returns {Function}
+     */
+    install: function(handler) {
+      return function() {
+        var script = document.createElement('script');
+
+        script.onreadystatechange = function() {
+          handler();
+
+          // Remove event
+          script.onreadystatechange = null;
+
+          // Remove script
+          fragment.removeChild(script);
+
+          // Free script
+          script = null;
+        };
+
+        fragment.appendChild(script);
+      };
+    }
+  };
+
+  /**
+   * @module timeout
+   * @license MIT
+   * @version 2017/12/05
+   */
+
+  var timeout = {
     /**
      * @method support
      * @returns {boolean}
@@ -148,12 +200,8 @@
      * @returns {Function}
      */
     install: function(handler) {
-      var image = new Image();
-
-      image.onerror = handler;
-
       return function() {
-        image.src = '';
+        setTimeout(handler, 0);
       };
     }
   };
@@ -161,7 +209,7 @@
   /**
    * @module task
    * @license MIT
-   * @version 2017/12/04
+   * @version 2017/12/05
    */
 
   /**
@@ -200,14 +248,14 @@
   /**
    * @module index
    * @license MIT
-   * @version 2017/12/04
+   * @version 2017/12/05
    */
 
   var schedule;
   var queue = [];
   var slice = Array.prototype.slice;
-  // Use chain: promise > mutation > channel > image
-  var schedules = [promise, mutation, channel, image];
+  // Use chain: promise > mutation > channel > script > timeout
+  var schedules = [promise, mutation, channel, script, timeout];
 
   /**
    * @function nextTick

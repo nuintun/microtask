@@ -1,7 +1,7 @@
 /**
  * @module task
  * @license MIT
- * @version 2017/12/04
+ * @version 2017/12/05
  */
 
 /**

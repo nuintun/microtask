@@ -1,7 +1,7 @@
 /**
  * @module native
  * @license MIT
- * @version 2017/12/04
+ * @version 2017/12/05
  */
 
 // Used to match `RegExp`

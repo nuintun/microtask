@@ -1,7 +1,7 @@
 /**
  * @module mutation
  * @license MIT
- * @version 2017/12/04
+ * @version 2017/12/05
  */
 
 import native from '../native';

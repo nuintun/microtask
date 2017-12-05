@@ -1,20 +1,21 @@
 /**
  * @module index
  * @license MIT
- * @version 2017/12/04
+ * @version 2017/12/05
  */
 
 import promise from './schedule/promise';
 import mutation from './schedule/mutation';
 import channel from './schedule/channel';
-import image from './schedule/image';
+import script from './schedule/script';
+import timeout from './schedule/timeout';
 import Task from './task';
 
 var schedule;
 var queue = [];
 var slice = Array.prototype.slice;
-// Use chain: promise > mutation > channel > image
-var schedules = [promise, mutation, channel, image];
+// Use chain: promise > mutation > channel > script > timeout
+var schedules = [promise, mutation, channel, script, timeout];
 
 /**
  * @function nextTick

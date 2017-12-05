@@ -1,7 +1,7 @@
 /**
- * @module image
+ * @module timeout
  * @license MIT
- * @version 2017/12/04
+ * @version 2017/12/05
  */
 
 export default {
@@ -18,12 +18,8 @@ export default {
    * @returns {Function}
    */
   install: function(handler) {
-    var image = new Image();
-
-    image.onerror = handler;
-
     return function() {
-      image.src = '';
+      setTimeout(handler, 0);
     };
   }
 };

@@ -9,6 +9,17 @@
 const fs = require('fs');
 const rollup = require('rollup');
 const uglify = require('uglify-es');
+const pkg = require('./package.json');
+
+const banner = `/**
+* @module ${pkg.name}
+* @author ${pkg.author.name}
+* @license ${pkg.license}
+* @version ${pkg.version}
+* @description ${pkg.description}
+* @see ${pkg.homepage}
+*/
+`;
 
 rollup
   .rollup({
@@ -32,6 +43,7 @@ rollup
           format: 'umd',
           indent: true,
           strict: true,
+          banner: banner,
           amd: { id: 'microtask' }
         })
         .then(result => {
@@ -50,7 +62,7 @@ rollup
             }
           );
 
-          fs.writeFileSync(min, result.code);
+          fs.writeFileSync(min, banner + result.code);
           console.log(`  Build ${min} success!`);
           fs.writeFileSync(src + '.map', result.map);
           console.log(`  Build ${src + '.map'} success!`);
