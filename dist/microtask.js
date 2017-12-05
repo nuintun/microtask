@@ -143,8 +143,6 @@
    * @version 2017/12/05
    */
 
-  var fragment = document.createDocumentFragment();
-
   var script = {
     /**
      * @method support
@@ -169,13 +167,13 @@
           script.onreadystatechange = null;
 
           // Remove script
-          fragment.removeChild(script);
+          script.parentNode.removeChild(script);
 
           // Free script
           script = null;
         };
 
-        fragment.appendChild(script);
+        document.documentElement.appendChild(script);
       };
     }
   };
