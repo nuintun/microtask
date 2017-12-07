@@ -251,7 +251,6 @@
 
   var schedule;
   var queue = [];
-  var slice = Array.prototype.slice;
   // Use chain: promise > mutation > channel > script > timeout
   var schedules = [promise, mutation, channel, script, timeout];
 
@@ -280,11 +279,37 @@
   }
 
   /**
+   * @function slice
+   * @description Faster slice arguments
+   * @param {Array|arguments} args
+   * @param {number} start
+   * @returns {Array}
+   * @see https://github.com/teambition/then.js
+   */
+  function slice(args, start) {
+    start = start >>> 0;
+
+    var length = args.length;
+
+    if (start >= length) {
+      return [];
+    }
+
+    var rest = new Array(length - start);
+
+    while (length-- > start) {
+      rest[length - start] = args[length];
+    }
+
+    return rest;
+  }
+
+  /**
    * @function microtask
    * @param {Function} task
    */
   function microtask(task) {
-    var args = slice.call(arguments, 1);
+    var args = slice(arguments, 1);
 
     queue.push(new Task(task, args));
 
