@@ -73,7 +73,8 @@ function slice(args, start) {
 export default function microtask(task) {
   var args = slice(arguments, 1);
 
-  queue.push(new Task(task, args));
+  // Equivalent to push, but avoids a function call. It's faster then push
+  queue[queue.length] = new Task(task, args);
 
   schedule();
 }
