@@ -21,14 +21,11 @@ var schedules = [promise, mutation, channel, script, timeout];
  * @function drain
  */
 function drain() {
-  var buffer = queue;
-
-  queue = [];
-
-  for (var i = 0, length = buffer.length; i < length; i++) {
-    buffer[i].run();
+  for (var i = 0; i < queue.length; i++) {
+    queue[i].run();
   }
 
+  queue = [];
   draining = false;
 }
 
