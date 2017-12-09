@@ -16,6 +16,10 @@ microtask(function(message) {
 }, 'Hello, World!');
 ```
 
+### Examples
+
+> [examples/index.html](https://nuintun.github.io/microtask/examples/index.html)
+
 ### Thanks
 
 [calvinmetcalf/immediate](https://github.com/calvinmetcalf/immediate)
