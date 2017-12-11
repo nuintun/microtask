@@ -7,7 +7,6 @@
 // Used to match `RegExp`
 // [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
 var REGEXP_CHAR_RE = /[\\^$.*+?()[\]{}|]/g;
-
 // Used to detect if a method is native
 var IS_NATIVE_RE = Function.prototype.toString.call(Function);
 
