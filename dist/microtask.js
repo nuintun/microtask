@@ -1,11 +1,11 @@
 /**
-* @module microtask
-* @author nuintun
-* @license MIT
-* @version 0.0.1
-* @description A pure JavaScript cross browser microtask.
-* @see https://nuintun.github.io/microtask
-*/
+ * @module microtask
+ * @author nuintun
+ * @license MIT
+ * @version 0.0.1
+ * @description A pure JavaScript cross browser microtask.
+ * @see https://nuintun.github.io/microtask
+ */
 
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
