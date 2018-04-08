@@ -4,7 +4,7 @@
  * @license MIT
  * @version 0.0.1
  * @description A pure JavaScript cross browser microtask.
- * @see https://nuintun.github.io/microtask
+ * @see https://github.com/nuintun/microtask#readme
  */
 
 (function (global, factory) {

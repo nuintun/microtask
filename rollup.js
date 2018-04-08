@@ -6,10 +6,39 @@
 
 'use strict';
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const rollup = require('rollup');
 const uglify = require('uglify-es');
 const pkg = require('./package.json');
+
+/**
+ * @function build
+ * @param {Object} inputOptions
+ * @param {Object} outputOptions
+ */
+async function build(inputOptions, outputOptions) {
+  await fs.remove('dist');
+
+  const bundle = await rollup.rollup(inputOptions);
+  const result = await bundle.generate(outputOptions);
+
+  const file = outputOptions.file;
+  const min = file.replace(/\.js$/i, '.min.js');
+  const map = `${file}.map`;
+  const minify = uglify.minify(
+    { 'fetch.js': result.code },
+    { ecma: 5, ie8: true, mangle: { eval: true }, sourceMap: { url: map } }
+  );
+
+  await fs.outputFile(file, result.code);
+  console.log(`Build ${file} success!`);
+
+  await fs.outputFile(min, banner + minify.code);
+  console.log(`Build ${min} success!`);
+
+  await fs.outputFile(map, minify.map);
+  console.log(`Build ${map} success!`);
+}
 
 const banner = `/**
  * @module ${pkg.name}
@@ -21,57 +50,20 @@ const banner = `/**
  */
 `;
 
-rollup
-  .rollup({
-    legacy: true,
-    context: 'window',
-    input: 'src/index.js'
-  })
-  .then(bundle => {
-    fs.stat('dist', error => {
-      if (error) {
-        fs.mkdirSync('dist');
-      }
+const inputOptions = {
+  context: 'window',
+  input: 'src/index.js'
+};
 
-      const src = 'dist/microtask.js';
-      const min = 'dist/microtask.min.js';
-      const map = 'microtask.js.map';
+const outputOptions = {
+  name: 'microtask',
+  format: 'umd',
+  indent: true,
+  strict: true,
+  legacy: true,
+  banner: banner,
+  file: 'dist/microtask.js',
+  amd: { id: 'microtask' }
+};
 
-      bundle
-        .generate({
-          name: 'microtask',
-          format: 'umd',
-          indent: true,
-          strict: true,
-          banner: banner,
-          amd: { id: 'microtask' }
-        })
-        .then(result => {
-          fs.writeFileSync(src, result.code);
-          console.log(`  Build ${src} success!`);
-
-          result = uglify.minify(
-            {
-              'microtask.js': result.code
-            },
-            {
-              ecma: 5,
-              ie8: true,
-              mangle: { eval: true },
-              sourceMap: { url: map }
-            }
-          );
-
-          fs.writeFileSync(min, banner + result.code);
-          console.log(`  Build ${min} success!`);
-          fs.writeFileSync(src + '.map', result.map);
-          console.log(`  Build ${src + '.map'} success!`);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    });
-  })
-  .catch(error => {
-    console.error(error);
-  });
+build(inputOptions, outputOptions);
