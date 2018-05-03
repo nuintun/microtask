@@ -41,10 +41,6 @@ body {
   padding-top: 66px;
 }
 
-pre {
-  font: 15px/1.5 "Ubuntu Mono", Consolas, "Lucida Console", monospace;
-}
-
 a,
 a:hover,
 a:active,
@@ -55,6 +51,7 @@ a:focus {
 }
 
 pre {
+  font: 15px/1.5 "Ubuntu Mono", Consolas, "Lucida Console", monospace;
   margin: 20px 0;
   text-align: left;
   background: #000;
