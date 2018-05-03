@@ -6,6 +6,7 @@
 
 'use strict';
 
+const path = require('path');
 const fs = require('fs-extra');
 const rollup = require('rollup');
 const uglify = require('uglify-es');
@@ -26,8 +27,8 @@ async function build(inputOptions, outputOptions) {
   const min = file.replace(/\.js$/i, '.min.js');
   const map = `${file}.map`;
   const minify = uglify.minify(
-    { 'fetch.js': result.code },
-    { ecma: 5, ie8: true, mangle: { eval: true }, sourceMap: { url: map } }
+    { 'microtask.js': result.code },
+    { ecma: 5, ie8: true, mangle: { eval: true }, sourceMap: { url: path.basename(map) } }
   );
 
   await fs.outputFile(file, result.code);

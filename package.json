@@ -6,6 +6,8 @@
     "name": "nuintun",
     "email": "nuintun@qq.com"
   },
+  "main": "dist/microtask.js",
+  "files": ["dist/microtask.js", "dist/microtask.min.js", "dist/microtask.js.map"],
   "homepage": "https://github.com/nuintun/microtask#readme",
   "repository": {
     "type": "git",
@@ -16,8 +18,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "rollup": "^0.57.1",
-    "fs-extra": "^5.0.0",
+    "rollup": "^0.58.2",
+    "fs-extra": "^6.0.0",
     "uglify-es": "^3.3.9"
   }
 }
