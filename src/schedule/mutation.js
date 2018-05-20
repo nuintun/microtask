@@ -22,7 +22,7 @@ export default {
    * @returns {Function}
    */
   install: function(handler) {
-    var called = 0;
+    var toggle = true;
     var observer = new Mutation(handler);
     var element = document.createTextNode('');
 
@@ -31,7 +31,7 @@ export default {
     });
 
     return function() {
-      element.data = called = ++called % 2;
+      element.data = toggle = !toggle;
     };
   }
 };
