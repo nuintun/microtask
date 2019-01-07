@@ -9,7 +9,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const rollup = require('rollup');
-const uglify = require('uglify-es');
+const terser = require('terser');
 const pkg = require('./package.json');
 
 /**
@@ -21,14 +21,15 @@ async function build(inputOptions, outputOptions) {
   await fs.remove('dist');
 
   const bundle = await rollup.rollup(inputOptions);
-  const result = await bundle.generate(outputOptions);
+  const { output } = await bundle.generate(outputOptions);
+  const [result] = output;
 
   const file = outputOptions.file;
   const min = file.replace(/\.js$/i, '.min.js');
   const map = `${file}.map`;
-  const minify = uglify.minify(
+  const minify = terser.minify(
     { 'microtask.js': result.code },
-    { ecma: 5, ie8: true, mangle: { eval: true }, sourceMap: { url: path.basename(map) } }
+    { ie8: true, mangle: { eval: true }, sourceMap: { url: path.basename(map) } }
   );
 
   await fs.outputFile(file, result.code);
@@ -57,12 +58,12 @@ const inputOptions = {
 };
 
 const outputOptions = {
-  name: 'microtask',
   format: 'umd',
   indent: true,
   strict: true,
   legacy: true,
   banner: banner,
+  name: 'microtask',
   file: 'dist/microtask.js',
   amd: { id: 'microtask' }
 };

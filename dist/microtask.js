@@ -10,8 +10,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define('microtask', factory) :
-  (global.microtask = factory());
-}(this, (function () { 'use strict';
+  (global = global || self, global.microtask = factory());
+}(this, function () { 'use strict';
 
   /**
    * @module native
@@ -322,4 +322,4 @@
 
   return microtask;
 
-})));
+}));
