@@ -8,8 +8,8 @@
 
 const path = require('path');
 const fs = require('fs-extra');
-const rollup = require('rollup');
 const terser = require('terser');
+const rollup = require('rollup');
 const pkg = require('./package.json');
 
 /**
@@ -58,14 +58,14 @@ const inputOptions = {
 };
 
 const outputOptions = {
-  format: 'umd',
+  banner,
   indent: true,
   strict: true,
   legacy: true,
-  banner: banner,
+  format: 'umd',
   name: 'microtask',
-  file: 'dist/microtask.js',
-  amd: { id: 'microtask' }
+  amd: { id: 'microtask' },
+  file: 'dist/microtask.js'
 };
 
 build(inputOptions, outputOptions);
