@@ -14,9 +14,48 @@
 }(this, function () { 'use strict';
 
   /**
+   * @module task
+   * @license MIT
+   * @author nuintun
+   */
+
+  /**
+   * @class Task
+   * @constructor
+   * @param {Function} task
+   * @param {Array} args
+   * @returns {Task}
+   */
+  function Task(task, args) {
+    this.task = task;
+    this.args = args;
+  }
+
+  /**
+   * @method run
+   */
+  Task.prototype.run = function() {
+    var task = this.task;
+    var args = this.args;
+
+    switch (args.length) {
+      case 0:
+        return task();
+      case 1:
+        return task(args[0]);
+      case 2:
+        return task(args[0], args[1]);
+      case 3:
+        return task(args[0], args[1], args[2]);
+      default:
+        return task.apply(null, args);
+    }
+  };
+
+  /**
    * @module native
    * @license MIT
-   * @version 2017/12/05
+   * @author nuintun
    */
 
   // Used to match `RegExp`
@@ -41,7 +80,7 @@
   /**
    * @module promise
    * @license MIT
-   * @version 2017/12/05
+   * @author nuintun
    */
 
   var Promise = window.Promise;
@@ -69,7 +108,7 @@
   /**
    * @module mutation
    * @license MIT
-   * @version 2017/12/05
+   * @author nuintun
    */
 
   var Mutation = window.MutationObserver || window.WebKitMutationObserver;
@@ -105,7 +144,7 @@
   /**
    * @module channel
    * @license MIT
-   * @version 2017/12/05
+   * @author nuintun
    */
 
   var VBArray = window.VBArray;
@@ -139,7 +178,7 @@
   /**
    * @module script
    * @license MIT
-   * @version 2017/12/05
+   * @author nuintun
    */
 
   var script = {
@@ -180,7 +219,7 @@
   /**
    * @module timeout
    * @license MIT
-   * @version 2017/12/05
+   * @author nuintun
    */
 
   var timeout = {
@@ -204,48 +243,9 @@
   };
 
   /**
-   * @module task
-   * @license MIT
-   * @version 2017/12/05
-   */
-
-  /**
-   * @class Task
-   * @constructor
-   * @param {Function} task
-   * @param {Array} args
-   * @returns {Task}
-   */
-  function Task(task, args) {
-    this.task = task;
-    this.args = args;
-  }
-
-  /**
-   * @method run
-   */
-  Task.prototype.run = function() {
-    var task = this.task;
-    var args = this.args;
-
-    switch (args.length) {
-      case 0:
-        return task();
-      case 1:
-        return task(args[0]);
-      case 2:
-        return task(args[0], args[1]);
-      case 3:
-        return task(args[0], args[1], args[2]);
-      default:
-        return task.apply(null, args);
-    }
-  };
-
-  /**
    * @module index
    * @license MIT
-   * @version 2017/12/05
+   * @author nuintun
    */
 
   var schedule;

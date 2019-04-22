@@ -1,15 +1,15 @@
 /**
  * @module index
  * @license MIT
- * @version 2017/12/05
+ * @author nuintun
  */
 
+import Task from './task';
 import promise from './schedule/promise';
 import mutation from './schedule/mutation';
 import channel from './schedule/channel';
 import script from './schedule/script';
 import timeout from './schedule/timeout';
-import Task from './task';
 
 var schedule;
 var queue = [];

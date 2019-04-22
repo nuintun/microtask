@@ -1,7 +1,7 @@
 /**
  * @module mutation
  * @license MIT
- * @version 2017/12/05
+ * @author nuintun
  */
 
 import native from '../native';
