@@ -1,7 +1,7 @@
 /**
  * @module script
- * @license MIT
  * @author nuintun
+ * @license MIT
  */
 
 export default {

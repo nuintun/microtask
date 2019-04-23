@@ -1,7 +1,7 @@
 /**
  * @module task
- * @license MIT
  * @author nuintun
+ * @license MIT
  */
 
 /**

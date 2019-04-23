@@ -1,7 +1,7 @@
 /**
  * @module index
- * @license MIT
  * @author nuintun
+ * @license MIT
  */
 
 import Task from './task';

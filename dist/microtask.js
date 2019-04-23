@@ -15,8 +15,8 @@
 
   /**
    * @module task
-   * @license MIT
    * @author nuintun
+   * @license MIT
    */
 
   /**
@@ -54,8 +54,8 @@
 
   /**
    * @module native
-   * @license MIT
    * @author nuintun
+   * @license MIT
    */
 
   // Used to match `RegExp`
@@ -79,8 +79,8 @@
 
   /**
    * @module promise
-   * @license MIT
    * @author nuintun
+   * @license MIT
    */
 
   var Promise = window.Promise;
@@ -107,8 +107,8 @@
 
   /**
    * @module mutation
-   * @license MIT
    * @author nuintun
+   * @license MIT
    */
 
   var Mutation = window.MutationObserver || window.WebKitMutationObserver;
@@ -143,8 +143,8 @@
 
   /**
    * @module channel
-   * @license MIT
    * @author nuintun
+   * @license MIT
    */
 
   var VBArray = window.VBArray;
@@ -177,8 +177,8 @@
 
   /**
    * @module script
-   * @license MIT
    * @author nuintun
+   * @license MIT
    */
 
   var script = {
@@ -218,8 +218,8 @@
 
   /**
    * @module timeout
-   * @license MIT
    * @author nuintun
+   * @license MIT
    */
 
   var timeout = {
@@ -244,8 +244,8 @@
 
   /**
    * @module index
-   * @license MIT
    * @author nuintun
+   * @license MIT
    */
 
   var schedule;

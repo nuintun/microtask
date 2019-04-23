@@ -1,7 +1,7 @@
 /**
  * @module timeout
- * @license MIT
  * @author nuintun
+ * @license MIT
  */
 
 export default {
